@@ -14,8 +14,8 @@ window.addEventListener("storage", (event) => {
 var init = {
     x: 1000,
     y: 500,
-    width: 100,
-    height: 100,
+    width: 32,
+    height: 32,
     direction: 1,
 }
 
@@ -26,8 +26,8 @@ const getDuck = () => {
         duck = {
             x: 1000,
             y: 500,
-            width: 100,
-            height: 100,
+            width: 32,
+            height: 32,
             direction: 1,
         }
     }
@@ -59,7 +59,14 @@ const main = async () => {
 
     while (true) {
         duck = getDuck();
-        await sleep(1);
+        await sleep(10);
+
+        if (duck.direction == 1 && duckObj.src.endsWith("Walking_inv.gif")) {
+            duckObj.src = "Walking.gif";
+        }
+        if (duck.direction == -1 && duckObj.src.endsWith("Walking.gif")) {
+            duckObj.src = "Walking_inv.gif"
+        }
 
         w = window.innerWidth;
         h = window.innerHeight;
@@ -126,7 +133,7 @@ const main = async () => {
                 if (duck.x + duck.width > lowestWindow.x + lowestWindow.w) {
                     duck.direction = -1;
                 }
-                if (duck.x < lowestWindow.x + duck.width/2) {
+                if (duck.x < lowestWindow.x +2) {
                     duck.direction = 1;
                 }
                 duck.x += duck.direction;
@@ -156,7 +163,8 @@ const main = async () => {
 }
 
 document.getElementById("main").addEventListener("click", () => {
-    document.getElementById("main").style.backgroundColor = "red";
+    document.getElementById("main").style.backgroundColor = "green";
+    document.getElementById("main").style.color = "white";
     isMain = true;
 })
 
