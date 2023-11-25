@@ -141,8 +141,8 @@ const main = async () => {
 
             // move upward if below lowest window
             if (lowestWindow != null) {
-                if (duck.y + duck.height > lowestWindow.y + lowestWindow.h) {
-                    duck.y -= 2;
+                if (duck.y + duck.height >= lowestWindow.y + lowestWindow.h) {
+                    duck.y -= 1;
                 }
             }
         }
